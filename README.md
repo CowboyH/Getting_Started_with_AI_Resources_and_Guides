@@ -448,7 +448,8 @@
 3. [谷歌学术基础使用方法](https://www.ecentime.com/article/ecentime-deutschland-google-scholar)
 
 ### web of science
-1. 进入中南大学图书馆门户网站，点击下图红框即可使用  
+1. 进入中南大学图书馆门户网站，点击下图红框即可使用
+![WOS][images/WOS.png]
 2. 使用方法：[Web of Science等核心数据库检索与利用](https://lib.tsinghua.edu.cn/__local/1/29/4F/13AFD264D97687F40690825C80C_2FBE16D9_C1A3E8.pdf?e=.pdf)
 ### tips
 1. 谷歌学术可以提供更大的学术搜索范围，如arXiv等预印版文章也会被收录入数据库；Web of Science只收录已发表的文章
