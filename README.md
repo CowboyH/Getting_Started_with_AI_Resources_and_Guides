@@ -1,7 +1,7 @@
 
 # [Getting Started with AI: Resources and Guides](#-getting-started-with-ai-resources-and-guides)
 - [Getting Started with AI: Resources and Guides](#getting-started-with-ai-resources-and-guides)
-  - [What’s Inside](#whats-inside)
+  - [前言](#前言)
   - [编程语言](#编程语言)
     - [Python-菜鸟教程](#python-菜鸟教程)
       - [教程特点](#教程特点)
@@ -57,17 +57,23 @@
   - [数据挖掘/分析经典论文/博客](#数据挖掘分析经典论文博客)
     - [Joyful-Pandas](#joyful-pandas)
       - [项目背景](#项目背景-2)
+  - [文献查阅](#文献查阅)
+    - [谷歌学术](#谷歌学术)
+    - [web of science](#web-of-science)
+    - [tips](#tips)
   - [说明](#说明)
 
 
-Welcome to this repository of curated resources and tutorials for beginners in AI!
+欢迎来到本仓库，这里收集整理了适合人工智能初学者的学习资源与教程！
 
-## What’s Inside
-- Introductory AI concepts
-- Hands-on tutorials
-- Recommended courses and readings
+## 前言
 
-👉 **Looking for Chinese version? [点击查看中文介绍 🇨🇳](README.zh.md)**
+欢迎访问本仓库，本教程由 AIRL 组整理，旨在为人工智能初学者提供系统、实用的入门资源。
+- 人工智能基础概念  
+- 实战操作教程  
+- 推荐课程与阅读资料
+
+
 
 ## 编程语言
 ### Python-菜鸟教程
@@ -206,7 +212,7 @@ Welcome to this repository of curated resources and tutorials for beginners in A
 ## 动手学深度学习 PyTorch版
 李沐老师在哔哩哔哩（Bilibili）平台上主讲的《动手学深度学习 PyTorch版》课程，旨在通过实践引导学习者掌握深度学习的核心概念和技术，特别是使用PyTorch框架进行实现。
 
-### **主要讲授内容**
+### 主要讲授内容
 
 课程涵盖深度学习的基础知识、模型构建、优化算法以及在计算机视觉和自然语言处理等领域的应用。通过结合理论讲解和代码实现，帮助学习者理解并应用深度学习技术。
 
@@ -217,7 +223,7 @@ Welcome to this repository of curated resources and tutorials for beginners in A
 
 [Datawhale组队学习资料](https://www.datawhale.cn/learn/summary/17)
 
-### **章节安排**
+### 章节安排
 
 1. **深度学习基础**：介绍深度学习概念、数据操作、线性代数、自动求导等预备知识。
 2. **线性神经网络**：讲解线性回归、Softmax回归等基础模型及其实现。
@@ -228,7 +234,7 @@ Welcome to this repository of curated resources and tutorials for beginners in A
 7. **优化算法与计算性能**：讨论深度学习中的优化方法和提升计算性能的技巧。
 8. **应用实践**：展示深度学习在计算机视觉和自然语言处理中的实际应用案例。
 
-### **学习建议**
+### 学习建议
 
 * **实践为主**：结合课程中的代码示例，动手实现各类模型，加深理解。
 * **系统学习**：按照课程章节顺序学习，逐步构建对深度学习的全面认识。
@@ -435,6 +441,19 @@ Welcome to this repository of curated resources and tutorials for beginners in A
 
 每一个章节内部有三种特殊记号，分别是Warning、Note以及练一练，它们分别表示对于某个特性使用的警告、对于某个知识点的补充或者注释、针对上文所述内容的即时练习。此外，每个章节还配有相关的习题练习，以供读者巩固所学知识或引导读者进行深入的思考与总结。基于完整性，所有的章末练习作者都给出了参考答案。
 
+## 文献查阅
+### 谷歌学术
+1. 浏览器的搜索引擎改为谷歌
+2. 搜索谷歌学术或者点击https://scholar.google.com.hk/?hl=zh-CN  
+3. [谷歌学术基础使用方法](https://www.ecentime.com/article/ecentime-deutschland-google-scholar)
+
+### web of science
+1. 进入中南大学图书馆门户网站，点击下图红框即可使用  
+2. 使用方法：[Web of Science等核心数据库检索与利用](https://lib.tsinghua.edu.cn/__local/1/29/4F/13AFD264D97687F40690825C80C_2FBE16D9_C1A3E8.pdf?e=.pdf)
+### tips
+1. 谷歌学术可以提供更大的学术搜索范围，如arXiv等预印版文章也会被收录入数据库；Web of Science只收录已发表的文章
+2. 查期刊分期使用Web of Science以及CCF列表
+3. 尽量阅读近5年的JCR1区和CCF A类论文
 ## 说明
 
 本教程旨在对相关学习资料进行整理与汇总，内容均来源于公开渠道。  
