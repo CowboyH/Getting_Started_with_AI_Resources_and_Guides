@@ -49,16 +49,28 @@
       - [项目意义](#项目意义)
       - [项目受众](#项目受众-1)
       - [项目亮点](#项目亮点)
+  - [如何读论文](#如何读论文)
   - [计算机视觉方法必读经典论文](#计算机视觉方法必读经典论文)
+    - [AlexNet](#alexnet)
+    - [ResNet](#resnet)
   - [医疗AI方向必读经典论文](#医疗ai方向必读经典论文)
-  - [LLM方向必读经典论文/博客](#llm方向必读经典论文博客)
+  - [大语言模型/多模态大模型方向必读经典论文/博客](#大语言模型多模态大模型方向必读经典论文博客)
     - [基于transformers的自然语言处理(NLP)入门，约需3小时](#基于transformers的自然语言处理nlp入门约需3小时)
     - [fun-transformer](#fun-transformer)
+    - [A Survey of Large Language Models](#a-survey-of-large-language-models)
+    - [Multimodal large model pretraining, adaptation and efficiency optimization](#multimodal-large-model-pretraining-adaptation-and-efficiency-optimization)
   - [数据挖掘/分析经典论文/博客](#数据挖掘分析经典论文博客)
     - [Joyful-Pandas](#joyful-pandas)
       - [项目背景](#项目背景-2)
+  - [常用库和工具](#常用库和工具)
+    - [Hugging Face](#hugging-face)
+      - [Hugging Face Transformers 萌新完全指南](#hugging-face-transformers-萌新完全指南)
   - [文献查阅](#文献查阅)
     - [谷歌学术](#谷歌学术)
+      - [基础使用](#基础使用)
+      - [进阶使用-常用搜索规则（操作符）](#进阶使用-常用搜索规则操作符)
+        - [组合使用操作符的示例](#组合使用操作符的示例)
+        - [注意事项](#注意事项)
     - [web of science](#web-of-science)
     - [tips](#tips)
   - [说明](#说明)
@@ -419,15 +431,29 @@
 #### 项目亮点
 1. 提供通俗易懂的理论内容来科普模型压缩技术
 2. 提供实践代码，结合实际场景帮助学习者更好地理解理论内容
+## 如何读论文
+[李沐，如何读论文](https://www.bilibili.com/video/BV1H44y1t75x/?spm_id_from=333.1387.collection.video_card.click&vd_source=772a030cb390c7a21d3321d5973ee170)
 
 ## 计算机视觉方法必读经典论文
-撰写中...
+### AlexNet
+[9年后重读深度学习奠基作之一：AlexNet【论文精读·2】](https://www.bilibili.com/video/BV1ih411J7Kz/?spm_id_from=333.1387.collection.video_card.click&vd_source=772a030cb390c7a21d3321d5973ee170)  
+[AlexNet论文逐段精读【论文精读】](https://www.bilibili.com/video/BV1hq4y157t1/?spm_id_from=333.1387.collection.video_card.click&vd_source=772a030cb390c7a21d3321d5973ee170)
+### ResNet
+[撑起计算机视觉半边天的ResNet【论文精读】](https://www.bilibili.com/video/BV1Fb4y1h73E/?spm_id_from=333.1387.collection.video_card.click&vd_source=772a030cb390c7a21d3321d5973ee170)
+[ResNet论文逐段精读【论文精读】](https://www.bilibili.com/video/BV1P3411y7nn/?spm_id_from=333.1387.collection.video_card.click&vd_source=772a030cb390c7a21d3321d5973ee170)
+
+更新中...
 ## 医疗AI方向必读经典论文
-撰写中...
-## LLM方向必读经典论文/博客
+更新中...
+## 大语言模型/多模态大模型方向必读经典论文/博客
 ### [基于transformers的自然语言处理(NLP)入门，约需3小时](https://www.datawhale.cn/learn/summary/18)  
 ### [fun-transformer](https://www.datawhale.cn/learn/summary/87)
-撰写中...
+### [A Survey of Large Language Models](https://arxiv.org/abs/2303.18223)
+Language is essentially a complex, intricate system of human expressions governed by grammatical rules. It poses a significant challenge to develop capable AI algorithms for comprehending and grasping a language. As a major approach, language modeling has been widely studied for language understanding and generation in the past two decades, evolving from statistical language models to neural language models. Recently, pre-trained language models (PLMs) have been proposed by pre-training Transformer models over large-scale corpora, showing strong capabilities in solving various NLP tasks. Since researchers have found that model scaling can lead to performance improvement, they further study the scaling effect by increasing the model size to an even larger size. Interestingly, when the parameter scale exceeds a certain level, these enlarged language models not only achieve a significant performance improvement but also show some special abilities that are not present in small-scale language models. To discriminate the difference in parameter scale, the research community has coined the term large language models (LLM) for the PLMs of significant size. Recently, the research on LLMs has been largely advanced by both academia and industry, and a remarkable progress is the launch of ChatGPT, which has attracted widespread attention from society. The technical evolution of LLMs has been making an important impact on the entire AI community, which would revolutionize the way how we develop and use AI algorithms. In this survey, we review the recent advances of LLMs by introducing the background, key findings, and mainstream techniques. In particular, we focus on four major aspects of LLMs, namely pre-training, adaptation tuning, utilization, and capacity evaluation. Besides, we also summarize the available resources for developing LLMs and discuss the remaining issues for future directions.
+### [Multimodal large model pretraining, adaptation and efficiency optimization](https://www.sciencedirect.com/science/article/pii/S092523122401909X#fig6)
+Multimodal large models, leveraging extensive datasets and parameters, have provided superior solutions for multimodal tasks and have been widely applied across various domains in everyday life. However, the development of multimodal large models also faces numerous challenges. Among the most critical challenges are how to scientifically and rationally pre-train multimodal large models and how to apply these pre-trained models to downstream tasks more effectively and at a lower cost. In response to these challenges, this paper initially analyzes and summarizes various multimodal pre-training methods employed by state-of-the-art multimodal large models. By analyzing the characteristics these methods, the paper elucidates the different capabilities imparted to multimodal large models by various multimodal pre-training methods. This provides a basis for researchers to select multimodal pre-training methods according to specific needs. Subsequently, the paper categorizes and outlines general adaptation methods for downstream tasks using multimodal pre-trained models. By comparing their advantages and disadvantages, the distinct characteristic of each method are highlighted. Furthermore, we categorize multimodal downstream tasks into five types. Then, for different types of tasks based on their characteristics and application scenarios, we outline suitable adaptation methods, offering researchers a more definitive direction for adaptation studies related to various types of tasks. Additionally, from the perspectives of parameter efficiency, memory efficiency, and efficiency of data utilization, a comparative analysis of research on the efficiency optimization of multimodal large models is conducted. In conclusion, the paper summarizes the shortcomings of existing research and looks forward to the issues and development directions that need to be addressed for multimodal large models. It points out that integrating more modalities into multimodal large models, reducing resource consumption costs, enhancing model explainability and transparency, and addressing privacy and security issues will be hotspots for future research.
+
+更新中...
 ## 数据挖掘/分析经典论文/博客
 ### [Joyful-Pandas](https://www.datawhale.cn/learn/summary/3)
 #### 项目背景
@@ -440,12 +466,92 @@
 在第三个模块中，包含了缺失数据、文本数据、分类数据和时序数据的介绍。其中，第七章缺失数据将涉及其四大操作————汇总、删除、填充、插值，以及Nullable类型的详细介绍；第八章文本数据中将涵盖str对象，正则基础，文本的五大操作————拆分、合并、匹配、替换、提取，以及常用字符串函数；第九章分类数据将涉及cat对象、有序类别以及区间类别；第十章时序数据将涵盖时间戳对象、时间差对象、日期偏置、时序滑窗以及时序分组的内容。
 
 每一个章节内部有三种特殊记号，分别是Warning、Note以及练一练，它们分别表示对于某个特性使用的警告、对于某个知识点的补充或者注释、针对上文所述内容的即时练习。此外，每个章节还配有相关的习题练习，以供读者巩固所学知识或引导读者进行深入的思考与总结。基于完整性，所有的章末练习作者都给出了参考答案。
-
+## 常用库和工具
+### Hugging Face
+#### [Hugging Face Transformers 萌新完全指南](https://huggingface.co/blog/zh/noob_intro_transformers)
 ## 文献查阅
 ### 谷歌学术
+#### 基础使用
 1. 浏览器的搜索引擎改为谷歌
 2. 搜索谷歌学术或者点击https://scholar.google.com.hk/?hl=zh-CN  
 3. [谷歌学术基础使用方法](https://www.ecentime.com/article/ecentime-deutschland-google-scholar)
+#### 进阶使用-常用搜索规则（操作符）
+
+在 Google Scholar 中，可以通过组合多个搜索规则（操作符）来构建复杂的查询，从而更精确地定位所需的学术文献。以下是一些常用的搜索操作符及其组合使用的示例：
+
+
+| 操作符           | 功能描述             | 示例                                      |                                                |
+| ------------- | ---------------- | --------------------------------------- | ---------------------------------------------- |
+| `"..."`       | 精确匹配短语           | `"large language model"`                |                                                |
+| `OR` / \`     | \`               | 包含任一词汇                                  | `"large language model" OR "foundation model"` |
+| `-`           | 排除包含特定词汇的结果      | `"large language model" -BERT`          |                                                |
+| `site:`       | 限定搜索结果来自特定网站或域名  | `"large language model" site:arxiv.org` |                                                |
+| `filetype:`   | 限定搜索特定文件类型       | `"large language model" filetype:pdf`   |                                                |
+| `intitle:`    | 搜索标题中包含特定词汇的文献   | `intitle:"large language model"`        |                                                |
+| `author:`     | 搜索特定作者的作品        | `author:"Yann LeCun"`                   |                                                |
+| `allintitle:` | 搜索标题中包含所有指定词汇的文献 | `allintitle:large language model`       |                                                |
+| `intext:`     | 搜索正文中包含特定词汇的文献   | `intext:"large language model"`         |                                                |
+| `allintext:`  | 搜索正文中包含所有指定词汇的文献 | `allintext:large language model`        |                                                |
+
+
+
+##### 组合使用操作符的示例
+
+1. **查找标题中包含“large language model”或“foundation model”的论文**：
+
+   ```
+   intitle:"large language model" OR intitle:"foundation model"
+   ```
+
+2. **查找正文中包含“large language model”但不包含“BERT”的论文**：
+
+   ```
+   intext:"large language model" -BERT
+   ```
+
+3. **查找 2020 年以来在 arXiv 上发布的 PDF 格式的相关论文**：
+
+   ```
+   "large language model" site:arxiv.org filetype:pdf
+   ```
+
+   然后在搜索结果页面左侧，点击“自 2020 年起”以限制时间范围。
+
+4. **查找由 Yann LeCun 撰写的关于“large language model”的论文**：
+
+   ```
+   "large language model" author:"Yann LeCun"
+   ```
+
+5. **查找标题中包含“large language model”且正文中包含“transformer”的论文**：
+
+   ```
+   intitle:"large language model" intext:transformer
+   ```
+
+---
+
+##### 注意事项
+
+* **操作符大小写**：在 Google Scholar 中，操作符如 `OR` 必须大写，`or` 小写将被视为普通词汇。
+
+* **括号使用**：虽然 Google Scholar 支持使用括号来组合逻辑操作符，但其解析可能不如专业数据库精确。
+
+* **搜索结果限制**：Google Scholar 最多显示前 1000 条搜索结果。
+
+* **高级搜索界面**：您可以通过点击搜索框右侧的菜单图标，选择“高级搜索”来使用图形界面构建复杂查询。
+
+
+如需进一步了解 Google Scholar 的搜索技巧，可以参考以下资源：
+
+* [Google Scholar 官方帮助页面](https://scholar.google.com/intl/zh-CN/scholar/help.html)
+
+* [Google Scholar 高级搜索指南 - John S. Bailey 图书馆](https://library.acg.edu/how-to-guides/google-scholar/advanced-searching)
+
+* [Google Scholar 搜索提示 - 华盛顿大学图书馆](https://guides.lib.uw.edu/hsl/google-scholar)
+
+
+
 
 ### web of science
 1. 进入中南大学图书馆门户网站，点击下图红框即可使用
@@ -458,6 +564,6 @@
 ## 说明
 
 本教程旨在对相关学习资料进行整理与汇总，内容均来源于公开渠道。  
-特别感谢以 DataWhale 为代表的组织和个人在开源教育资源方面所做出的贡献。
+特别感谢以李沐、DataWhale 为代表的组织和个人在开源教育资源方面所做出的贡献。
 
 
