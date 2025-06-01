@@ -82,6 +82,39 @@
       - [PyPOTS-Homenpage](#pypots-homenpage)
     - [数据库](#数据库)
       - [PostgreSQL 教程](#postgresql-教程)
+    - [使用 rsync 进行大文件复制](#使用-rsync-进行大文件复制)
+      - [1. 什么是 rsync](#1-什么是-rsync)
+      - [2. 为什么使用 rsync](#2-为什么使用-rsync)
+      - [3. 如何安装 rsync](#3-如何安装-rsync)
+        - [Debian/Ubuntu 系列](#debianubuntu-系列)
+        - [CentOS/RHEL 系列](#centosrhel-系列)
+        - [Arch Linux](#arch-linux)
+      - [4. 基本命令格式](#4-基本命令格式)
+        - [参数说明](#参数说明)
+      - [5. 如何保证传输可靠性（断点续传）](#5-如何保证传输可靠性断点续传)
+      - [6. 路径末尾 `/` 的区别](#6-路径末尾--的区别)
+        - [示例目录结构](#示例目录结构)
+        - [情况一：源路径 **带 `/`**](#情况一源路径-带-)
+        - [情况二：源路径 **不带 `/`**](#情况二源路径-不带-)
+        - [总结对比](#总结对比)
+      - [7. 推荐命令实例](#7-推荐命令实例)
+      - [8. 文件总数校验方法](#8-文件总数校验方法)
+      - [9. 常见问题及注意事项](#9-常见问题及注意事项)
+        - [是否要使用 `--inplace`？](#是否要使用---inplace)
+        - [是否可以将多条命令一起粘贴到 Shell 中执行？](#是否可以将多条命令一起粘贴到-shell-中执行)
+      - [10. 总结：建议命令模板](#10-总结建议命令模板)
+    - [BorgBackup 新手指南：从零开始进行安全高效的数据备份](#borgbackup-新手指南从零开始进行安全高效的数据备份)
+      - [前言](#前言-1)
+      - [1. 安装 BorgBackup](#1-安装-borgbackup)
+      - [2. 初始化备份仓库](#2-初始化备份仓库)
+      - [3. 使用相对路径执行第一次完整备份](#3-使用相对路径执行第一次完整备份)
+      - [4. 查看已有备份快照](#4-查看已有备份快照)
+      - [5. 检查快照中的文件结构](#5-检查快照中的文件结构)
+      - [6. 恢复指定版本的快照](#6-恢复指定版本的快照)
+      - [7. 备份多个快照（按天执行）](#7-备份多个快照按天执行)
+      - [8. 常见命令速查表](#8-常见命令速查表)
+      - [9. 注意事项](#9-注意事项)
+      - [结束语](#结束语)
   - [文献查阅](#文献查阅)
     - [谷歌学术](#谷歌学术)
       - [基础使用](#基础使用)
@@ -91,7 +124,6 @@
     - [web of science](#web-of-science)
     - [tips](#tips)
   - [学术论文写作](#学术论文写作)
-    - [统计检验](#统计检验)
   - [说明](#说明)
 
 
@@ -104,6 +136,12 @@
 - 实战操作教程  
 - 推荐课程与阅读资料
 - 蓝色字体均为可跳转链接，点击后可跳转
+
+⚠️
+本教程中所涉及的命令与代码均经过认真编写与多轮校对，并在常见环境中进行了测试和验证，力求准确无误。然而，由于篇幅较长、路径复杂，仍可能存在未能察觉的笔误、格式问题或在特定系统环境下未曾预料的行为。尽管已尽力检查且未发现明显错误，仍建议在执行前仔细核对命令内容，特别是涉及数据路径、删除操作等敏感步骤。如条件允许，可先在测试目录中进行验证，以确保数据安全与操作的正确性。
+
+🗓️ 更新日期：2025 年 6 月 1 日（北京时间）
+
 
 
 ## 编程语言
@@ -583,6 +621,374 @@ Multimodal large models, leveraging extensive datasets and parameters, have prov
 #### [PyPOTS-Homenpage](https://pypots.com/)
 ### 数据库
 #### [PostgreSQL 教程](https://www.runoob.com/postgresql/postgresql-tutorial.html)
+### 使用 rsync 进行大文件复制
+
+#### 1. 什么是 rsync
+
+`rsync` 是 Linux 下常用的文件同步和传输工具，适用于本地文件复制或远程同步。它支持增量复制、断点续传、权限保留和传输压缩等特性，特别适合处理大量文件和大体积数据的复制任务。
+
+
+#### 2. 为什么使用 rsync
+
+与常规的 `cp` 命令相比，rsync 拥有以下优势：
+
+- 支持增量复制，跳过未更改的文件
+- 支持断点续传，避免中断导致重传
+- 占用资源少，适合大规模数据传输
+- 支持保留文件元数据（权限、时间戳等）
+- 提供详细的进度输出和日志记录
+
+
+#### 3. 如何安装 rsync
+
+##### Debian/Ubuntu 系列
+
+```bash
+sudo apt update
+sudo apt install rsync
+````
+
+
+
+##### CentOS/RHEL 系列
+
+```bash
+sudo yum install rsync
+```
+
+##### Arch Linux
+
+```bash
+sudo pacman -S rsync
+```
+
+---
+
+#### 4. 基本命令格式
+
+```bash
+rsync -avh /path/to/source/ /path/to/target/
+```
+
+##### 参数说明
+
+| 参数                        | 含义                       |
+| ------------------------- | ------------------------ |
+| `-a`                      | 归档模式，递归复制并保留权限、时间戳、符号链接等 |
+| `-v`                      | 显示详细过程（verbose）          |
+| `-h`                      | 以人类可读格式显示文件大小            |
+| `--info=progress2`        | 显示整体传输进度                 |
+| `--partial`               | 保留未完成的文件用于断点续传           |
+| `--log-file=filename.txt` | 将传输过程写入日志文件中             |
+
+
+#### 5. 如何保证传输可靠性（断点续传）
+
+通过添加 `--partial` 参数可以在传输中断时保留未完成的部分文件。只需重复运行相同命令，即可实现断点续传。
+
+推荐格式：
+
+```bash
+rsync -avh --info=progress2 --partial --log-file=rsync_log.txt /source/ /target/
+```
+
+---
+
+#### 6. 路径末尾 `/` 的区别
+
+rsync 中是否在源路径末尾添加 `/`，会影响复制行为：
+
+##### 示例目录结构
+
+源路径：
+
+```
+/media/usb_disk/dir1/
+├── file1.jpg
+└── file2.jpg
+```
+
+目标路径：
+
+```
+/mnt/target/
+```
+
+##### 情况一：源路径 **带 `/`**
+
+```bash
+rsync -avh /media/usb_disk/dir1/ /mnt/target/
+```
+
+结果目录结构为：
+
+```
+/mnt/target/
+├── file1.jpg
+└── file2.jpg
+```
+
+说明：**只复制目录中的内容，不包含源目录本身**
+
+
+##### 情况二：源路径 **不带 `/`**
+
+```bash
+rsync -avh /media/usb_disk/dir1 /mnt/target/
+```
+
+结果目录结构为：
+
+```
+/mnt/target/
+└── dir1/
+    ├── file1.jpg
+    └── file2.jpg
+```
+
+说明：**连同源目录本身一并复制**
+
+---
+
+##### 总结对比
+
+| 命令形式       | 是否复制目录本身 | 适用场景           |
+| ---------- | -------- | -------------- |
+| `/source/` | 否，仅复制内容  | 复制内容到已存在的目标目录中 |
+| `/source`  | 是，包含目录本身 | 保留原始目录结构       |
+
+---
+
+#### 7. 推荐命令实例
+
+将一个包含大量文件的目录（保留目录结构）复制到目标路径下，并记录日志：
+
+```bash
+rsync -avh --info=progress2 --partial \
+--log-file=rsync_log.txt \
+"/media/usb_disk/my_dataset" \
+"/mnt/data_disk/project_data/"
+```
+
+---
+
+#### 8. 文件总数校验方法
+
+复制完成后，可以使用以下命令对比源和目标的文件数量，确认复制完整性：
+
+```bash
+echo "源文件数：$(find '/media/usb_disk/my_dataset' -type f | wc -l)"
+echo "目标文件数：$(find '/mnt/data_disk/project_data/my_dataset' -type f | wc -l)"
+```
+
+
+
+#### 9. 常见问题及注意事项
+
+##### 是否要使用 `--inplace`？
+
+**不推荐**在首次复制到空目录时使用 `--inplace`，原因如下：
+
+* 默认行为更安全，写入临时文件再替换原文件
+* `--inplace` 会直接写目标文件，一旦中断可能造成文件损坏
+* 只有在更新现有大文件（如数据库备份、日志）时才建议使用
+
+
+##### 是否可以将多条命令一起粘贴到 Shell 中执行？
+
+可以，有三种方式：
+
+* 使用 `;`：顺序执行所有命令
+* 使用 `&&`：前一条成功时才执行下一条
+* 多行粘贴：Shell 会自动逐行执行
+
+示例：
+
+```bash
+find "/source" -type f | wc -l
+find "/target" -type f | wc -l
+```
+
+---
+
+#### 10. 总结：建议命令模板
+
+```bash
+rsync -avh --info=progress2 --partial \
+--log-file=rsync_log.txt \
+"/media/usb_disk/my_folder" \
+"/mnt/data_disk/backup_location/"
+```
+
+复制完成后校验文件数量：
+
+```bash
+echo "源文件数：$(find '/media/usb_disk/my_folder' -type f | wc -l)"
+echo "目标文件数：$(find '/mnt/data_disk/backup_location/my_folder' -type f | wc -l)"
+```
+
+---
+
+
+
+### BorgBackup 新手指南：从零开始进行安全高效的数据备份
+
+
+
+
+
+
+#### 前言
+
+BorgBackup 是一个专为高效、去重、压缩和加密备份而设计的命令行工具。它适用于 Linux 用户，尤其适合定期备份大规模文件（如图像数据）并支持快照式还原。
+
+
+
+
+
+#### 1. 安装 BorgBackup
+
+**Debian / Ubuntu：**
+
+```bash
+sudo apt update
+sudo apt install borgbackup
+````
+
+**CentOS / RHEL：**
+
+```bash
+sudo yum install epel-release
+sudo yum install borgbackup
+```
+
+
+
+#### 2. 初始化备份仓库
+
+假设你将备份仓库存储在 `/mnt/backup/borg_repo`：
+
+```bash
+borg init --encryption=repokey /mnt/backup/borg_repo
+```
+
+说明：
+
+* `--encryption=repokey`：开启加密，密钥保存在本地。若不希望加密可改为 `none`。
+* 初始化后会提示输入加密密码，请牢记。
+
+
+
+#### 3. 使用相对路径执行第一次完整备份
+
+进入你希望备份目录的上级路径，例如：
+
+```bash
+cd /mnt/yourdisk/MVLM_eye
+```
+
+然后执行备份命令：
+
+```bash
+borg create \
+  --progress \
+  --stats \
+  /mnt/backup/borg_repo::2024-06-01-original-data \
+  original_data
+```
+
+说明：
+
+* 使用相对路径 `original_data` 可以在快照中保留目录名。
+* 快照名建议用日期前缀，便于识别与管理。
+
+
+
+#### 4. 查看已有备份快照
+
+```bash
+borg list /mnt/backup/borg_repo
+```
+
+输出示例：
+
+```
+2024-06-01-original-data    Sat, 2024-06-01 14:00:00
+```
+
+
+
+#### 5. 检查快照中的文件结构
+
+```bash
+borg list /mnt/backup/borg_repo::2024-06-01-original-data
+```
+
+应能看到以 `original_data/` 开头的结构，表示保留了目录层级。
+
+
+
+#### 6. 恢复指定版本的快照
+
+将备份恢复到指定路径，例如 `/tmp/recovery_test`：
+
+```bash
+mkdir -p /tmp/recovery_test
+
+borg extract \
+  --target /tmp/recovery_test \
+  /mnt/backup/borg_repo::2024-06-01-original-data
+```
+
+
+
+#### 7. 备份多个快照（按天执行）
+
+可通过 `cron` 实现自动化。编辑定时任务：
+
+```bash
+crontab -e
+```
+
+添加以下内容（每天凌晨 3 点备份）：
+
+```bash
+0 3 * * * cd /mnt/yourdisk/MVLM_eye && borg create --stats --progress /mnt/backup/borg_repo::$(date +\%F)-original-data original_data >> /var/log/borgbackup.log 2>&1
+```
+
+
+
+#### 8. 常见命令速查表
+
+| 功能     | 命令                                             |
+| ------ | ---------------------------------------------- |
+| 初始化仓库  | `borg init --encryption=repokey /path/to/repo` |
+| 创建备份   | `borg create repo::snapshot path_to_backup`    |
+| 查看快照   | `borg list /path/to/repo`                      |
+| 查看快照内容 | `borg list repo::snapshot`                     |
+| 恢复快照   | `borg extract repo::snapshot`                  |
+| 删除快照   | `borg delete repo::snapshot`                   |
+
+
+
+#### 9. 注意事项
+
+* 确保仓库所在磁盘空间充足。
+* 不要删除 `.key` 文件（默认位于 `~/.config/borg/keys/`），否则无法解密。
+* 适合大文件、图像等重复率高的备份任务。
+* 支持增量备份，只有变动部分会被重新写入。
+
+
+
+#### 结束语
+
+BorgBackup 是一个功能强大、极具扩展性的备份工具。只需初始化一次仓库，之后即可自动完成高效、加密、安全的数据归档。非常适合科研数据、影像数据等需要高可靠性的备份场景。
+
+
+
+---
+
+
 ## 文献查阅
 ### 谷歌学术
 #### 基础使用
@@ -676,9 +1082,7 @@ Multimodal large models, leveraging extensive datasets and parameters, have prov
 2. 查期刊分期使用Web of Science以及CCF列表
 3. 尽量阅读近5年的JCR1区和CCF A类论文
 ## 学术论文写作
-### 统计检验
-主要写在学术论文中，如何合理的选用统计检验方法，以及如何计算
-常规的统计检验方法都得涉及到
+撰写中
 ## 说明
 本教程旨在整理与汇总人工智能相关的学习资料，所收录内容均来自公开渠道。
 特别感谢以李沐、徐亦达、DataWhale 为代表的个人与组织在开源教育资源方面所做出的贡献，同时亦致谢那些未公开身份或无法直接归属的贡献者，正是他们的无私付出，使得优质学习资源得以广泛传播。
