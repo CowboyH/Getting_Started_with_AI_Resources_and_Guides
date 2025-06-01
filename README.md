@@ -22,6 +22,11 @@
   - [实用机器学习（Practical Machine Learning）](#实用机器学习practical-machine-learning)
     - [课程结构与主要内容](#课程结构与主要内容)
     - [学习建议](#学习建议-3)
+  - [徐亦达周末机器学习讨论](#徐亦达周末机器学习讨论)
+      - [课程概述](#课程概述)
+      - [课程结构](#课程结构)
+      - [学习资源](#学习资源-1)
+      - [适用人群](#适用人群)
   - [南瓜书 PumpkinBook](#南瓜书-pumpkinbook)
     - [项目背景](#项目背景)
   - [Machine Learning From Scratch](#machine-learning-from-scratch)
@@ -49,6 +54,12 @@
       - [项目意义](#项目意义)
       - [项目受众](#项目受众-1)
       - [项目亮点](#项目亮点)
+  - [因果发现 (causal discovery)](#因果发现-causal-discovery)
+    - [pywhy](#pywhy)
+    - [causal discovery](#causal-discovery)
+    - [Causal Discovery Toolbox: Uncover causal relationships in Python](#causal-discovery-toolbox-uncover-causal-relationships-in-python)
+    - [gCastle](#gcastle)
+    - [CausalNex’s API docs and tutorials!](#causalnexs-api-docs-and-tutorials)
   - [如何读论文](#如何读论文)
   - [计算机视觉方法必读经典论文](#计算机视觉方法必读经典论文)
     - [AlexNet](#alexnet)
@@ -65,6 +76,12 @@
   - [常用库和工具](#常用库和工具)
     - [Hugging Face](#hugging-face)
       - [Hugging Face Transformers 萌新完全指南](#hugging-face-transformers-萌新完全指南)
+    - [非规则时间序列](#非规则时间序列)
+      - [PyPOTS-github](#pypots-github)
+      - [PyPOTS-pypi](#pypots-pypi)
+      - [PyPOTS-Homenpage](#pypots-homenpage)
+    - [数据库](#数据库)
+      - [PostgreSQL 教程](#postgresql-教程)
   - [文献查阅](#文献查阅)
     - [谷歌学术](#谷歌学术)
       - [基础使用](#基础使用)
@@ -73,6 +90,8 @@
         - [注意事项](#注意事项)
     - [web of science](#web-of-science)
     - [tips](#tips)
+  - [学术论文写作](#学术论文写作)
+    - [统计检验](#统计检验)
   - [说明](#说明)
 
 
@@ -313,6 +332,82 @@
 * **拓展知识面**：深入学习课程中提到的高级主题，如迁移学习、模型压缩等，提升模型的实用性和效率。
 通过系统学习本课程，学习者将能够全面掌握机器学习在实际应用中的各个环节，从而更有效地将理论知识应用于实际项目中。
 
+---
+## [徐亦达周末机器学习讨论](https://github.com/roboticcam/machine-learning-notes)
+
+#### 课程概述
+欢迎来到由 roboticcam 提供的机器学习、概率模型与深度学习课程！这是一套全面且不断更新的学习资源，包含超过 2000 页的讲义和丰富的视频链接。课程内容涵盖了从基础到高级的机器学习理论，适合不同层次的学习者。无论你是初学者还是希望深入研究的学者，都能在这里找到有价值的学习材料。
+
+#### 课程结构
+课程分为多个部分，每个部分都包含了详细的讲义和相关的视频教程。以下是课程的主要模块：
+
+1. **机器学习基础**
+   - **模型评估**：介绍分类模型评估的常见概念和技术，包括自举抽样、混淆矩阵、接收器操作特征 (ROC) 曲线等。
+   - **决策树**：除了决策树的基础知识外，还增加了卡方检验部分。
+   - **简单贝叶斯**：对概率的基本概念、贝叶斯定理、概率的图形模型进行直观解释。
+   - **回归分析**：解释线性回归和多项式回归，以及评估回归性能的技术，特别是确定系数 (CoD) 方法。
+   - **神经网络**：展示三个不同的最后输出层模型（逻辑回归、多项式回归和线性回归），介绍梯度下降的概念，以及全连接神经网络和卷积神经网络。
+   - **无监督学习**：描述无监督学习中的常见主题，包括聚类、主题建模（如 LDA）和传统的词嵌入（如 word2vec）。
+
+2. **中级数学与机器学习**
+   - **期望最大化（EM）算法**：包括高斯混合模型的 EM 示例，以及相关的 Matlab 演示代码和视频。
+   - **马尔可夫链蒙特卡洛（MCMC）**：介绍随机矩阵、幂法收敛、详细平衡和 PageRank 算法，以及基本的 MCMC 方法，如 Metropolis-Hasting 和 Gibbs。
+   - **变分推断**：解释变分贝叶斯非指数和指数族分布，提供相关的 Matlab 演示代码和视频。
+   - **状态空间模型（动态模型）**：详细解释卡尔曼滤波器和隐马尔可夫模型，提供相关的 Matlab 演示代码和视频。
+
+3. **深度学习研究主题**
+   - **方差减少**：介绍 REBAR、RELAX 算法以及 Gumbel 条件概率的重新参数化。
+   - **Softmax 函数的新研究**：探讨分布外、神经网络校准、Gumbel-Max 技巧和随机光束搜索。
+   - **生成对抗网络（GAN）的数学**：解释 GAN 的工作原理，包括传统 GAN、W-GAN、Info-GAN 和贝叶斯 GAN。
+   - **高级变分自编码器**：介绍变分自编码器的工作原理，包括重要性加权自编码器、通过 ELBO 的标准化流、对抗变分贝叶斯、混合密度自编码器和 stick-breaking 自编码器。
+   - **无限深度：NeuralODE 和伴随方程**：讨论神经 ODE，特别是在参数训练中使用伴随方程。
+
+4. **优化方法**
+   - **梯度下降研究**：提供关于梯度下降算法的隐式偏差和隐式正则化的渐进式研究笔记，以及随机梯度下降的收敛研究。
+   - **对偶性教程**：介绍拉格朗日对偶、对偶函数、KKT 条件、支持向量机示例和 Farkas 引理。
+   - **共轭梯度下降**：对共轭梯度下降进行快速解释。
+
+5. **深度学习基础**
+   - **卷积神经网络**：从基础到最近的研究，包括各种损失函数、中心损失、对比损失、残差网络、胶囊网络、YOLO 和 SSD。
+   - **受限玻尔兹曼机（RBM）**：介绍 RBM 和对比发散（CD）的基础知识。
+
+6. **3D 几何计算机视觉**
+   - **3D 几何基础**：包括相机模型、内部和外部参数估计、对极几何、三维重建和图像深度估计。
+   - **基于深度 3D 几何的最新研究**：探讨单图像到相机模型估计、基于多视图的多人 3D 姿势估计、基于 GAN 的 3D 姿势估计、基于运动的深度结构和基于深度学习的深度估计。
+
+7. **强化学习**
+   - **强化学习基础**：介绍马尔可夫决策过程、贝尔曼方程和深度 Q 学习。
+   - **蒙托卡罗树搜索**：介绍蒙托卡罗树搜索和 AlphaGo 学习算法。
+   - **策略梯度**：介绍策略梯度定理、可信区域优化的数学、TRPO 自然梯度、近似策略优化（PPO）和共轭梯度算法。
+
+8. **自然语言处理**
+   - **词嵌入**：介绍 GloVe、Fasttext 和负采样。
+   - **深度自然语言处理**：包括递归神经网络、LSTM、具有注意力机制的 Seq2Seq、集束搜索、指针网络和 "Attention is all you need"。
+
+9. **概率模型**
+   - **概率估计**：介绍一些常用的分布、共轭特性、最大似然估计、最大后验估计、指数族和自然参数。
+   - **蒙特卡洛推理**：包括逆 CDF 采样、拒绝式采样、自适应拒绝式采样和重要性采样。
+   - **马尔可夫链蒙特卡洛**：介绍 M-H、Gibbs、Slice Sampling、椭圆 Slice 采样、Swendesen-Wang 和使用 LDA 的折叠 Gibbs。
+   - **粒子滤波器（序列蒙特卡洛）**：介绍序列蒙特卡洛、凝聚滤波器算法和辅助粒子滤波器。
+
+10. **高级概率模型**
+    - **非参贝叶斯及其推导基础**：介绍狄利克雷过程、中国餐馆过程、狄利克雷过程 Slice 采样。
+    - **非参贝叶斯扩展**：包括层次狄利克雷过程、分层狄利克雷过程-隐马尔可夫模型和印度自助餐过程（IBP）。
+    - **完全随机测度**：介绍 Levy-Khintchine 表示、复合 Poisson 过程、Gamma 过程和负二项过程。
+    - **从 HDP 和 Copula 采样相关整数**：提供对 IJCAI 2016 论文的不同解释。
+    - **行列式点过程**：解释 DPP 的边缘分布、L-ensemble、其抽样策略以及在时变 DPP 中的工作。
+
+#### 学习资源
+- **视频教程**：部分讲义内容已录制为视频，可在 YouTube、哔哩哔哩和优酷上找到。
+- **代码示例**：提供 Matlab 和 Python 的代码示例，帮助学习者更好地理解和实践。
+- **讲义下载**：所有讲义均可在 GitHub 仓库中找到，方便学习者随时下载和查阅。
+
+#### 适用人群
+- **初学者**：希望通过系统学习掌握机器学习基础的学员。
+- **中级学者**：希望深入了解机器学习中级数学和深度学习理论的学习者。
+- **高级研究者**：对机器学习前沿研究主题感兴趣的学者和研究人员。
+
+
 
 
 ---
@@ -431,6 +526,19 @@
 #### 项目亮点
 1. 提供通俗易懂的理论内容来科普模型压缩技术
 2. 提供实践代码，结合实际场景帮助学习者更好地理解理论内容
+
+
+---
+## 因果发现 (causal discovery)
+### [pywhy](https://www.pywhy.org/)
+### [causal discovery](https://fentechsolutions.github.io/CausalDiscoveryToolbox/html/index.html)
+### [Causal Discovery Toolbox: Uncover causal relationships in Python](https://arxiv.org/abs/1903.02278?utm_source=chatgpt.com)
+### [gCastle](https://github.com/huawei-noah/trustworthyAI/tree/master/gcastle)
+### [CausalNex’s API docs and tutorials!](https://causalnex.readthedocs.io/en/latest/#)
+
+
+
+---
 ## 如何读论文
 [李沐，如何读论文](https://www.bilibili.com/video/BV1H44y1t75x/?spm_id_from=333.1387.collection.video_card.click&vd_source=772a030cb390c7a21d3321d5973ee170)
 
@@ -469,6 +577,12 @@ Multimodal large models, leveraging extensive datasets and parameters, have prov
 ## 常用库和工具
 ### Hugging Face
 #### [Hugging Face Transformers 萌新完全指南](https://huggingface.co/blog/zh/noob_intro_transformers)
+### 非规则时间序列
+#### [PyPOTS-github](https://github.com/WenjieDu/PyPOTS)
+#### [PyPOTS-pypi](https://pypi.org/project/pypots/)
+#### [PyPOTS-Homenpage](https://pypots.com/)
+### 数据库
+#### [PostgreSQL 教程](https://www.runoob.com/postgresql/postgresql-tutorial.html)
 ## 文献查阅
 ### 谷歌学术
 #### 基础使用
@@ -561,9 +675,12 @@ Multimodal large models, leveraging extensive datasets and parameters, have prov
 1. 谷歌学术可以提供更大的学术搜索范围，如arXiv等预印版文章也会被收录入数据库；Web of Science只收录已发表的文章
 2. 查期刊分期使用Web of Science以及CCF列表
 3. 尽量阅读近5年的JCR1区和CCF A类论文
+## 学术论文写作
+### 统计检验
+主要写在学术论文中，如何合理的选用统计检验方法，以及如何计算
+常规的统计检验方法都得涉及到
 ## 说明
-
-本教程旨在对相关学习资料进行整理与汇总，内容均来源于公开渠道。  
-特别感谢以李沐、DataWhale 为代表的组织和个人在开源教育资源方面所做出的贡献。
+本教程旨在整理与汇总人工智能相关的学习资料，所收录内容均来自公开渠道。
+特别感谢以李沐、徐亦达、DataWhale 为代表的个人与组织在开源教育资源方面所做出的贡献，同时亦致谢那些未公开身份或无法直接归属的贡献者，正是他们的无私付出，使得优质学习资源得以广泛传播。
 
 
