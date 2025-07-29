@@ -60,6 +60,8 @@
     - [Causal Discovery Toolbox: Uncover causal relationships in Python](#causal-discovery-toolbox-uncover-causal-relationships-in-python)
     - [gCastle](#gcastle)
     - [CausalNex’s API docs and tutorials!](#causalnexs-api-docs-and-tutorials)
+  - [Diffusion](#diffusion)
+    - [Awesome Diffusion Models in Medical Imaging](#awesome-diffusion-models-in-medical-imaging)
   - [如何读论文](#如何读论文)
   - [计算机视觉方法必读经典论文](#计算机视觉方法必读经典论文)
     - [AlexNet](#alexnet)
@@ -140,7 +142,7 @@
 ⚠️
 本教程中所涉及的命令与代码均经过认真编写与多轮校对，并在常见环境中进行了测试和验证，力求准确无误。然而，由于篇幅较长、路径复杂，仍可能存在未能察觉的笔误、格式问题或在特定系统环境下未曾预料的行为。尽管已尽力检查且未发现明显错误，仍建议在执行前仔细核对命令内容，特别是涉及数据路径、删除操作等敏感步骤。如条件允许，可先在测试目录中进行验证，以确保数据安全与操作的正确性。
 
-🗓️ 更新日期：2025 年 6 月 1 日（北京时间）
+🗓️ 更新日期：2025 年 7 月 29 日（北京时间）
 
 
 
@@ -574,7 +576,9 @@
 ### [gCastle](https://github.com/huawei-noah/trustworthyAI/tree/master/gcastle)
 ### [CausalNex’s API docs and tutorials!](https://causalnex.readthedocs.io/en/latest/#)
 
-
+---
+## Diffusion
+### [Awesome Diffusion Models in Medical Imaging](https://github.com/amirhossein-kz/Awesome-Diffusion-Models-in-Medical-Imaging?tab=readme-ov-file#enhancement)
 
 ---
 ## 如何读论文
